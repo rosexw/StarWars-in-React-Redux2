@@ -1,21 +1,29 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/App';
+import { AppContainer } from 'react-hot-loader';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+require('./index.html');
+
+// Create app (boilerplate code)
+const container = document.querySelector('#app-container');
+
+// Render app
+ReactDOM.render(
+  <AppContainer>
+      <App />
+  </AppContainer>
+  , container
+);
+
+// Hot module reloading
+if (module.hot) {
+  module.hot.accept('./components/App', () => {
+    ReactDOM.render(
+      <AppContainer>
+          <App />
+      </AppContainer>
+      , container
     );
-  }
+  });
 }
-
-export default App;
